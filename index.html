@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nhóm 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0C0C0C;--ice:#D7E2EA;--pink:#B600A8;--violet:#7621B0}
+html,body{background:var(--bg);font-family:'Kanit',sans-serif;color:var(--ice);scroll-behavior:smooth}
+main{overflow-x:clip}
+a{color:inherit;text-decoration:none}
+.grad{background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-.02em}
+.title{font-size:clamp(3rem,12vw,160px);text-align:center}
+.fade{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.25,.1,.25,1),transform .7s cubic-bezier(.25,.1,.25,1);transition-delay:var(--d,0s)}
+.fade.in{opacity:1;transform:none}
+.btn{display:inline-block;border-radius:999px;color:#fff;font-weight:500;text-transform:uppercase;letter-spacing:.15em;font-size:clamp(.75rem,1.2vw,1rem);padding:.9rem 2.5rem;background:linear-gradient(123deg,#18011F 7%,#B600A8 37%,#7621B0 72%,#BE4C00 100%);box-shadow:0 4px 4px rgba(181,1,167,.25),4px 4px 12px #7721B1 inset;outline:2px solid #fff;outline-offset:-3px;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.ghost{display:inline-block;border:2px solid var(--ice);border-radius:999px;padding:.7rem 2rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;font-size:clamp(.75rem,1.2vw,1rem);transition:background .2s}
+.ghost:hover{background:rgba(215,226,234,.1)}
+a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:560px;display:flex;flex-direction:column;padding:0 clamp(1.5rem,3vw,2.5rem);overflow-x:clip}
+nav{display:flex;justify-content:space-between;padding-top:clamp(1.5rem,2.5vw,2rem)}
+nav a{font-weight:500;text-transform:uppercase;letter-spacing:.05em;font-size:clamp(.85rem,1.5vw,1.4rem);transition:opacity .2s}
+nav a:hover{opacity:.7}
+.hero h1{font-size:clamp(3.2rem,15vw,17.5vw);white-space:nowrap;width:100%;margin-top:1rem;overflow:hidden;padding-bottom:.05em}
+.hero .sub{margin-top:.6rem;font-weight:300;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(.75rem,1.6vw,1.4rem);text-align:center}
+.bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:clamp(1.75rem,2.5vw,2.5rem);position:relative;z-index:20}
+.bottom p{font-weight:300;text-transform:uppercase;letter-spacing:.05em;line-height:1.3;font-size:clamp(.75rem,1.4vw,1.5rem);max-width:clamp(160px,20vw,260px)}
+.duo{position:absolute;left:50%;transform:translateX(-50%);bottom:0;z-index:10;display:flex;gap:clamp(.5rem,1.5vw,1.25rem);align-items:flex-end}
+.magnet{will-change:auto}
+.person{width:clamp(130px,18vw,250px);aspect-ratio:3/4.2;border:0;padding:0;border-radius:999px 999px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;text-align:center;color:#fff;position:relative;overflow:hidden;cursor:pointer;font:inherit;animation:avatar-float 3.6s ease-in-out infinite;transition:filter .25s,transform .25s}
+.magnet:nth-child(2) .person{animation-delay:-1.8s}
+.person::after{content:"";position:absolute;inset:-60% auto -60% -70%;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:rotate(24deg);animation:avatar-shine 5s ease-in-out infinite;pointer-events:none}
+.person:hover{filter:brightness(1.18);transform:scale(1.025)}
+.person:active{transform:scale(.98)}
+.person:focus-visible{outline:3px solid #fff;outline-offset:5px}
+.person b,.person small{position:relative;z-index:1}
+.avatar-art{position:relative;z-index:1;width:clamp(5.5rem,10vw,8rem);height:auto;filter:drop-shadow(0 10px 16px rgba(0,0,0,.22));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.person:hover .avatar-art{transform:translateY(-5px) scale(1.04)}
+@media(prefers-reduced-motion:reduce){.person,.person::after,.avatar-art{animation:none;transition:none}}
+@keyframes avatar-float{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes avatar-shine{0%,65%,100%{left:-70%}35%{left:130%}}
+.person.a,.person.b{background:transparent;height:auto;aspect-ratio:3/4.2}
+.person b{font-size:clamp(2.5rem,7vw,6rem);font-weight:900;line-height:1}
+.person small{font-weight:300;letter-spacing:.1em;font-size:clamp(.6rem,1vw,.85rem)}
+
+/* MARQUEE */
+.marquee{padding:clamp(6rem,10vw,10rem) 0 2.5rem;display:flex;flex-direction:column;gap:.75rem;overflow:hidden}
+.track{display:flex;gap:.75rem;width:max-content;will-change:transform}
+.tile{position:relative;isolation:isolate;overflow:hidden;width:420px;height:270px;border-radius:1rem;display:flex;align-items:flex-end;padding:1.25rem;font-size:2.2rem;font-weight:900;text-transform:uppercase;color:#fff;letter-spacing:-.01em;background:#111018;box-shadow:inset 0 0 60px rgba(0,0,0,.24);transition:transform .3s ease}
+.tile:hover{transform:translateY(-5px)}
+.tile-art{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.tile-label{position:relative;z-index:1;text-shadow:0 2px 14px rgba(0,0,0,.85)}
+@media(max-width:640px){.tile{width:280px;height:180px;font-size:1.5rem}}
+
+/* ABOUT */
+.about{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(2.5rem,4vw,4rem);padding:5rem clamp(1.25rem,3vw,2.5rem);text-align:center}
+.orb{position:absolute;border-radius:50%;filter:blur(1px);opacity:.9}
+.o1{top:4%;left:3%;width:clamp(90px,14vw,210px);aspect-ratio:1;background:radial-gradient(circle at 30% 30%,#D7E2EA,#646973 60%,#0C0C0C)}
+.o2{top:4%;right:3%;width:clamp(90px,14vw,210px);aspect-ratio:1;border-radius:24%;background:linear-gradient(135deg,#BE4C00,#B600A8);transform:rotate(18deg)}
+.o3{bottom:8%;left:8%;width:clamp(70px,10vw,160px);aspect-ratio:1;border-radius:24%;background:linear-gradient(135deg,#7621B0,#18011F);transform:rotate(-14deg)}
+.o4{bottom:8%;right:8%;width:clamp(80px,11vw,180px);aspect-ratio:1;background:radial-gradient(circle at 30% 30%,#B600A8,#18011F 70%)}
+.about p.txt{max-width:560px;font-weight:500;line-height:1.7;font-size:clamp(1rem,2vw,1.35rem);position:relative;z-index:2}
+.ch{opacity:.2;transition:opacity .15s}
+.ch.on{opacity:1}
+.ids{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:2}
+.id{border:2px solid var(--ice);border-radius:2rem;padding:1rem 1.75rem;text-align:left;scroll-margin-top:2rem;transition:border-color .25s,box-shadow .25s,transform .25s}
+.id:target{border-color:#d946ef;box-shadow:0 0 28px rgba(182,0,168,.45);transform:translateY(-5px)}
+.id b{display:block;font-weight:500;font-size:1.1rem}
+.id span{font-weight:300;opacity:.7;font-size:.95rem}
+
+/* SERVICES */
+.services{background:#fff;color:var(--bg);border-radius:clamp(40px,5vw,60px) clamp(40px,5vw,60px) 0 0;padding:clamp(5rem,8vw,8rem) clamp(1.25rem,3vw,2.5rem)}
+.services .title{color:var(--bg);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:clamp(4rem,7vw,7rem)}
+.list{max-width:64rem;margin:0 auto}
+.item{display:flex;gap:clamp(1rem,4vw,3rem);align-items:flex-start;padding:clamp(2rem,3vw,3rem) 0;border-top:1px solid rgba(12,12,12,.15)}
+.item:last-child{border-bottom:1px solid rgba(12,12,12,.15)}
+.num{font-weight:900;line-height:1;font-size:clamp(3rem,10vw,140px);min-width:1.4em}
+.item h3{font-weight:500;text-transform:uppercase;font-size:clamp(1rem,2.2vw,2.1rem);margin-bottom:.5rem}
+.item p{font-weight:300;line-height:1.6;max-width:42rem;opacity:.6;font-size:clamp(.85rem,1.6vw,1.25rem)}
+
+/* PROJECTS */
+.projects{background:var(--bg);border-radius:clamp(40px,5vw,60px) clamp(40px,5vw,60px) 0 0;margin-top:calc(-1 * clamp(2.5rem,3.5vw,3.5rem));position:relative;z-index:10;padding:clamp(5rem,8vw,8rem) clamp(1.25rem,3vw,2.5rem) 4rem}
+.projects .title{margin-bottom:clamp(3rem,5vw,5rem)}
+.stack{max-width:80rem;margin:0 auto}
+.wrap{height:85vh;min-height:520px}
+.card{position:sticky;top:clamp(6rem,9vw,8rem);border:2px solid var(--ice);background:var(--bg);border-radius:clamp(40px,5vw,60px);padding:clamp(1rem,2vw,2rem);transform-origin:top center;will-change:transform}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:0 .5rem 1rem}
+.top .num{font-size:clamp(3rem,8vw,120px);color:var(--ice)}
+.meta{flex:1;min-width:160px}
+.meta small{font-weight:300;opacity:.7;display:block;font-size:clamp(.8rem,1.3vw,1.1rem)}
+.meta h3{font-weight:500;text-transform:uppercase;font-size:clamp(1.1rem,2.5vw,2.2rem);line-height:1.1}
+.grid{display:grid;grid-template-columns:40fr 60fr;gap:.75rem}
+.col{display:flex;flex-direction:column;gap:.75rem}
+.im{border-radius:clamp(30px,4vw,60px);display:flex;align-items:flex-end;padding:1.25rem 1.5rem;font-weight:900;text-transform:uppercase;color:#fff;font-size:clamp(.9rem,2vw,1.8rem)}
+.im.s1{height:clamp(110px,15vw,230px)}.im.s2{height:clamp(140px,20vw,300px)}.im.tall{height:calc(clamp(110px,15vw,230px) + clamp(140px,20vw,300px) + .75rem)}
+.im.preview{position:relative;overflow:hidden;isolation:isolate;background:#14221f!important}
+.im.preview:before{content:"";position:absolute;inset:0;z-index:-1;transition:transform .5s}
+.im.preview:hover:before{transform:scale(1.04)}
+.preview-vinh:before{background:radial-gradient(ellipse at 15% 100%,rgba(43,132,109,.85),transparent 48%),linear-gradient(165deg,#dff7f2 0%,#a6ddd7 54%,#528f85 100%)}
+.preview-vinh:after{content:"✿";position:absolute;top:10%;right:8%;font-size:clamp(2rem,7vw,6rem);color:rgba(232,113,150,.72);text-shadow:0 0 22px rgba(255,255,255,.8);z-index:-1}
+.preview-tour:before{background:radial-gradient(ellipse at center,#f79421 0 18%,#a91a04 19% 36%,transparent 37%),repeating-conic-gradient(from 0deg at 50% 50%,#f8a328 0deg 4deg,#c51306 4deg 10deg,#981006 10deg 14deg)}
+.preview-tour:after{content:"✦　✧　✦　✧　✦";position:absolute;inset:8% 0 auto;text-align:center;color:#ffd566;font-size:clamp(1rem,3vw,2.5rem);text-shadow:0 1px 5px #8f1700;z-index:-1}
+.im.preview .screen-copy{display:flex;flex-direction:column;gap:.2rem;max-width:90%;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+.preview-vinh .screen-copy{color:#155e5b}.preview-tour .screen-copy{color:#fff2cb}
+.screen-copy small{font-size:clamp(.5rem,.8vw,.8rem);letter-spacing:.2em;font-weight:500}
+.screen-copy strong{font-size:clamp(1rem,2.5vw,2.3rem);line-height:1.08}
+.screen-copy span{font-size:clamp(.55rem,.9vw,.9rem);font-weight:400;text-transform:none;letter-spacing:0}
+
+.project-shot{position:relative;width:100%;aspect-ratio:3.05/1;overflow:hidden;border-radius:clamp(24px,3vw,42px);background:#171717}
+.project-shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .45s ease}
+.project-shot:hover img{transform:scale(1.025)}
+.shot-label{position:absolute;right:1rem;bottom:1rem;padding:.45rem .75rem;border:1px solid rgba(255,255,255,.65);border-radius:99px;background:rgba(0,0,0,.5);color:#fff;font-size:.7rem;letter-spacing:.12em;backdrop-filter:blur(8px)}
+@media(max-width:640px){.project-shot{aspect-ratio:1.7/1}.shot-label{font-size:.6rem;right:.6rem;bottom:.6rem}}
+/* FOOTER */
+footer{background:var(--bg);text-align:center;padding:5rem 1.25rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+footer p{font-weight:300;opacity:.7}
+.mob{margin-top:1rem}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media(max-width:640px){.nav a{font-size:.8rem}.hero h1{font-size:15vw}.duo{opacity:.9}.item{flex-direction:column;gap:.5rem}}
+
+/* PROFILE POPUP */
+.profile-backdrop{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:1.25rem;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.profile-backdrop.open{opacity:1;visibility:visible}
+.profile-dialog{position:relative;width:min(100%,430px);padding:2.5rem 2rem 2rem;border:1px solid rgba(255,255,255,.35);border-radius:1.5rem;background:linear-gradient(145deg,#211022,#0c0c0c 65%);box-shadow:0 24px 80px rgba(182,0,168,.28);text-align:center;transform:translateY(18px) scale(.97);transition:transform .25s}
+.profile-backdrop.open .profile-dialog{transform:translateY(0) scale(1)}
+.profile-close{position:absolute;top:.75rem;right:.9rem;width:2.5rem;height:2.5rem;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:transparent;color:#fff;font-size:1.6rem;cursor:pointer}
+.profile-avatar{width:5rem;height:5rem;margin:0 auto 1rem;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#d000bd,#7621b0);color:#fff;font-size:3rem;font-weight:900;box-shadow:0 0 32px rgba(182,0,168,.35)}
+.profile-label{color:#db78d1;font-size:.75rem;letter-spacing:.2em}
+.profile-dialog h2{margin:.35rem 0;font-size:clamp(1.4rem,6vw,2rem);color:#fff}
+.profile-student{color:var(--ice);opacity:.7;font-size:.9rem}
+.profile-description{margin-top:1.25rem;line-height:1.7;font-weight:300}
+@media(prefers-reduced-motion:reduce){.profile-backdrop,.profile-dialog{transition:none}}
+</style>
+</head>
+<body>
+<main>
+
+<section class="hero" id="top">
+  <nav class="fade">
+    <a href="#about">About</a><a href="#services">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+  </nav>
+  <h1 class="grad fade" style="--d:.15s">Nhóm 1</h1>
+  <p class="sub fade" style="--d:.25s">hi, we&rsquo;re web developers</p>
+  <div class="bottom">
+    <p class="fade" style="--d:.35s">hai sinh viên xây dựng những website gọn, nhanh và dễ dùng</p>
+    <a class="btn fade" style="--d:.5s" href="#contact">Contact Us</a>
+  </div>
+  <div class="duo fade" style="--d:.6s">
+    <div class="magnet"><button class="person a" type="button" data-profile="lam" aria-label="Mở profile Đoàn Võ Ngọc Lâm"><svg class="avatar-art" viewBox="0 0 160 180" role="img" aria-label="Avatar hoạt hình tóc đen, áo tím"><defs><linearGradient id="lamShirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f2a6ef"/><stop offset="1" stop-color="#7621b0"/></linearGradient><linearGradient id="lamHair" x1="0" x2="1"><stop stop-color="#291431"/><stop offset="1" stop-color="#09070d"/></linearGradient></defs><ellipse cx="80" cy="166" rx="61" ry="10" fill="#120914" opacity=".25"/><path d="M24 161c4-35 24-53 56-53s52 18 56 53v9H24z" fill="url(#lamShirt)"/><path d="M66 103h28v25c-8 10-20 10-28 0z" fill="#d89470"/><path d="M43 61c0-31 16-47 38-47 25 0 39 18 39 48v22c0 25-17 41-40 41S43 109 43 84z" fill="#f0bc98"/><path d="M41 74C29 37 47 9 80 8c33-1 52 21 43 60l-9-17-8 13-8-25c-14 14-32 20-55 18l-2 17z" fill="url(#lamHair)"/><path d="M44 48c11-22 28-28 48-27 15 1 25 8 33 21-17-8-37-8-54-2-10 4-18 10-27 19z" fill="#39203f"/><ellipse cx="65" cy="77" rx="3" ry="4" fill="#34202a"/><ellipse cx="96" cy="77" rx="3" ry="4" fill="#34202a"/><path d="M72 96q8 6 16 0" fill="none" stroke="#a34f5f" stroke-width="3" stroke-linecap="round"/><path d="M62 69h13m12 0h13" stroke="#382139" stroke-width="2.5" stroke-linecap="round"/><path d="M55 112l25 19 25-19 17 14-15 44H53l-15-44z" fill="url(#lamShirt)"/><path d="M72 111l8 9 8-9-3 28h-10z" fill="#fff" opacity=".88"/><path d="M76 124h8l5 20-9 12-9-12z" fill="#d7e2ea"/></svg><small>ĐOÀN VÕ NGỌC LÂM</small></button></div>
+    <div class="magnet"><button class="person b" type="button" data-profile="loc" aria-label="Mở profile Khả Phước Lộc"><svg class="avatar-art" viewBox="0 0 160 180" role="img" aria-label="Avatar hoạt hình tóc nâu, áo cam"><defs><linearGradient id="locShirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffd06f"/><stop offset="1" stop-color="#be4c00"/></linearGradient><linearGradient id="locHair" x1="0" x2="1"><stop stop-color="#592813"/><stop offset="1" stop-color="#211019"/></linearGradient></defs><ellipse cx="80" cy="166" rx="61" ry="10" fill="#1b1012" opacity=".25"/><path d="M24 161c4-35 24-53 56-53s52 18 56 53v9H24z" fill="url(#locShirt)"/><path d="M66 103h28v25c-8 10-20 10-28 0z" fill="#d99972"/><path d="M43 61c0-31 16-47 38-47 25 0 39 18 39 48v22c0 25-17 41-40 41S43 109 43 84z" fill="#edb58d"/><path d="M41 73C30 37 48 9 82 9c29 0 48 19 40 57l-10-15-7 13-8-25c-15 13-33 19-54 17l-3 17z" fill="url(#locHair)"/><path d="M45 47c8-24 26-34 46-32 18 2 29 12 34 28-16-7-32-10-49-4-12 4-20 11-30 20z" fill="#75401f"/><path d="M54 68q11-8 22 0m8 0q11-8 22 0" fill="none" stroke="#502818" stroke-width="3" stroke-linecap="round"/><ellipse cx="65" cy="78" rx="3" ry="4" fill="#352128"/><ellipse cx="96" cy="78" rx="3" ry="4" fill="#352128"/><path d="M72 97q8 5 16-1" fill="none" stroke="#a55057" stroke-width="3" stroke-linecap="round"/><path d="M55 126l25-14 25 14 16 38H39z" fill="url(#locShirt)"/><path d="M72 112l8 10 8-10-3 30h-10z" fill="#fff4df"/><path d="M80 125l11 13-11 18-11-18z" fill="#7621b0"/><circle cx="80" cy="136" r="3" fill="#ffd06f"/></svg><small>KHẢ PHƯỚC LỘC</small></button></div>
+  </div>
+</section>
+
+<section class="marquee" aria-hidden="true">
+  <div class="track" id="r1"></div>
+  <div class="track" id="r2"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div>
+  <h2 class="grad title fade">About us</h2>
+  <p class="txt" id="anim">Chúng mình là hai web developer cùng học tại trường. Mỗi bạn một thế mạnh, cùng nhau xây dựng sản phẩm từ ý tưởng đến khi chạy thật. Chúng mình thích những dự án rõ ràng, giao diện gọn gàng và code dễ bảo trì. Cùng tạo ra điều gì đó thật tuyệt nhé!</p>
+  <div class="ids fade">
+    <div class="id"><b>Đoàn Võ Ngọc Lâm</b><span>MSSV 24127435</span></div>
+    <div class="id"><b>Khả Phước Lộc</b><span>MSSV 24127073</span></div>
+  </div>
+  <a class="btn fade" href="#contact">Contact Us</a>
+</section>
+
+<section class="services" id="services">
+  <h2 class="title fade">Skills</h2>
+  <div class="list" id="list"></div>
+</section>
+
+<section class="projects" id="projects">
+  <h2 class="grad title fade">Projects</h2>
+  <div class="stack" id="stack"></div>
+</section>
+
+<footer id="contact">
+  <h2 class="grad title" style="font-size:clamp(2.5rem,9vw,120px)">Let&rsquo;s talk</h2>
+  <p>Liên hệ với chúng tôi qua</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+    <a class="ghost" href="https://github.com/dvnlam2431-wq" target="_blank" rel="noopener">GitHub · Đoàn Võ Ngọc Lâm</a>
+    <a class="ghost" href="https://github.com/FXSeaCow" target="_blank" rel="noopener">GitHub · Khả Phước Lộc</a>
+  </div>
+  <p class="mob">&copy; 2026 Đoàn Võ Ngọc Lâm &amp; Khả Phước Lộc</p>
+</footer>
+</main>
+<div class="profile-backdrop" id="profileBackdrop" aria-hidden="true"><section class="profile-dialog" role="dialog" aria-modal="true" aria-labelledby="profileName"><button class="profile-close" type="button" aria-label="Đóng profile">&times;</button><div class="profile-avatar">L</div><p class="profile-label">THÀNH VIÊN NHÓM</p><h2 id="profileName"></h2><p class="profile-student" id="profileStudent"></p><p class="profile-description" id="profileDescription"></p></section></div>
+
+<script>
+// ---------- DỮ LIỆU (chỉnh ở đây) ----------
+const SERVICES=[
+  ["Frontend","Xây dựng giao diện bằng HTML, CSS và JavaScript, bám sát thiết kế và chạy mượt trên mọi trình duyệt."],
+  ["Responsive","Bố cục co giãn tốt từ điện thoại đến màn hình lớn, ưu tiên trải nghiệm trên mobile."],
+  ["Backend","Xây dựng logic phía máy chủ, API và cơ sở dữ liệu cho các ứng dụng web hoàn chỉnh."],
+  ["Teamwork với Git","Phối hợp qua GitHub: chia nhánh, review code và giữ lịch sử thay đổi rõ ràng."],
+  ["Tối ưu hiệu năng","Giảm thời gian tải, nén ảnh và viết code gọn để trang luôn nhanh."]
+];
+const PROJECTS=[
+  {cat:"WEB SMARTTOUR · GITHUB",name:"UIA SmartTour",url:"https://github.com/mkbang2411-oss/TDTT---U-I-A",preview:"tour",image:"UIA.png",
+   g:["linear-gradient(135deg,#B600A8,#18011F)","linear-gradient(135deg,#7621B0,#0C0C0C)","linear-gradient(160deg,#BE4C00,#B600A8)"],t:["Giao diện","Chức năng","UIA · SMARTTOUR"]},
+  {cat:"WEB QUẢN LÝ MỘ PHẦN · GITHUB",name:"Vĩnh Phúc Viên",url:"https://github.com/torusama/SE_PRO",preview:"vinh",image:"vpy.png",
+   g:["linear-gradient(135deg,#BE4C00,#18011F)","linear-gradient(135deg,#B600A8,#7621B0)","linear-gradient(160deg,#7621B0,#BE4C00)"],t:["Quản lý mộ phần","Thông tin","VĨNH PHÚC VIÊN"]}
+];
+const TAGS=["HTML","CSS","JavaScript","Git","Responsive","API","Database","UI","GitHub","Teamwork","Frontend","Backend","Deploy","Debug","Design","Code","Web","Node","SQL","React","Python"];
+const GR=["#B600A8,#18011F","#7621B0,#0C0C0C","#BE4C00,#18011F","#646973,#0C0C0C","#B600A8,#BE4C00","#7621B0,#B600A8"];
+
+// ---------- RENDER ----------
+const $=s=>document.querySelector(s);
+$('#list').innerHTML=SERVICES.map((s,i)=>`<div class="item fade" style="--d:${i*.1}s"><div class="num">0${i+1}</div><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
+$('#stack').innerHTML=PROJECTS.map((p,i)=>`<div class="wrap"><article class="card" style="top:calc(clamp(6rem,9vw,8rem) + ${i*28}px)">
+ <div class="top"><div class="num">0${i+1}</div><div class="meta"><small>${p.cat}</small><h3>${p.name}</h3></div><a class="ghost" href="${p.url}" target="_blank" rel="noopener">View Repository</a></div>
+ <div class="project-shot"><img src="${p.image}" alt="Giao diện ${p.name}" loading="lazy"><span class="shot-label">GIAO DIỆN THỰC TẾ</span></div></article></div>`).join('');
+const SKILL_ART={HTML:["</>","#b600a8","#6417a2"],CSS:["#","#b600a8","#351047"],JavaScript:["JS","#f0a51a","#6c3d0b"],Git:["⑂","#f05a36","#5a172b"],Responsive:["▣","#29b6c7","#164b75"],API:["{ }","#36c2a1","#16505c"],Database:["◉","#5d8cff","#272b73"],UI:["◈","#ef5da8","#662c9c"],GitHub:["⌘","#d4d7e2","#414153"],Teamwork:["●●","#ff8b57","#8a286b"],Frontend:["<>","#48d8cd","#154e83"],Backend:["▤","#786bff","#29225d"],Deploy:["↗","#55d6a6","#196c73"],Debug:["⌕","#ff6868","#682e6e"],Design:["✦","#ff7eb6","#5b36a0"],Code:["{…}","#64b5ff","#3a287b"],Web:["◎","#27c3e6","#282c77"],Node:["⬡","#80c342","#25523c"],SQL:["▤","#f6a84a","#6b3834"],React:["⚛","#57d8f2","#3a4287"],Python:["Py","#ffd454","#2868a2"]};
+const tiles=(items)=>[...items,...items,...items].map((label,i)=>{
+  const [mark,c1,c2]=SKILL_ART[label]||["✦","#b600a8","#351047"];
+  const safeMark=mark.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const art=`<svg class="tile-art" viewBox="0 0 420 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient><pattern id="p${i}" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="white" stroke-opacity=".1"/></pattern></defs><rect width="420" height="270" fill="url(#g${i})"/><rect width="420" height="270" fill="url(#p${i})"/><circle cx="340" cy="65" r="100" fill="white" opacity=".08"/><circle cx="55" cy="250" r="105" fill="black" opacity=".13"/><rect x="27" y="25" width="366" height="220" rx="18" fill="none" stroke="white" stroke-opacity=".22"/><text x="210" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="96" font-weight="700" fill="white" fill-opacity=".84">${safeMark}</text><path d="M45 52h7m12 0h7m12 0h7" stroke="white" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/></svg>`;
+  return `<div class="tile">${art}<span class="tile-label">${label}</span></div>`;
+}).join('');
+$('#r1').innerHTML=tiles(TAGS.slice(0,11));
+$('#r2').innerHTML=tiles(TAGS.slice(11));
+
+// ---------- FADE-IN ----------
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'50px'});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ---------- CHỮ HIỆN THEO SCROLL ----------
+const an=$('#anim'),txt=an.textContent;
+an.innerHTML=[...txt].map(c=>c===' '?' ':`<span class="ch">${c}</span>`).join('');
+const chars=[...an.querySelectorAll('.ch')];
+
+
+// ---------- PROFILE POPUP ----------
+const profiles={
+  lam:{name:'Đoàn Võ Ngọc Lâm',student:'MSSV 24127435',description:'Thành viên nhóm phát triển website, tập trung xây dựng giao diện và trải nghiệm người dùng.'},
+  loc:{name:'Khả Phước Lộc',student:'MSSV 24127073',description:'Thành viên nhóm phát triển website, tham gia xây dựng chức năng và hoàn thiện sản phẩm.'}
+};
+const profileBackdrop=$('#profileBackdrop'),profileClose=$('.profile-close');
+let profileOpener=null;
+function closeProfile(){profileBackdrop.classList.remove('open');profileBackdrop.setAttribute('aria-hidden','true');document.body.style.overflow='';if(profileOpener)profileOpener.focus()}
+document.querySelectorAll('[data-profile]').forEach(button=>button.addEventListener('click',e=>{
+  profileOpener=button;const p=profiles[button.dataset.profile];
+  $('#profileName').textContent=p.name;$('#profileStudent').textContent=p.student;$('#profileDescription').textContent=p.description;
+  profileBackdrop.classList.add('open');profileBackdrop.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';profileClose.focus();
+}));
+profileClose.addEventListener('click',closeProfile);
+profileBackdrop.addEventListener('click',e=>{if(e.target===profileBackdrop)closeProfile()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&profileBackdrop.classList.contains('open'))closeProfile()});
+// ---------- MAGNET: use tilt only, preserve click target ----------
+const mags=[...document.querySelectorAll(".magnet")];
+mags.forEach(m=>{
+  m.addEventListener("pointermove",e=>{const r=m.getBoundingClientRect();const x=(e.clientX-r.left-r.width/2)/r.width;const y=(e.clientY-r.top-r.height/2)/r.height;m.style.setProperty("--tilt-x",`${-y*4}deg`);m.style.setProperty("--tilt-y",`${x*4}deg`)});
+  m.addEventListener("pointerleave",()=>{m.style.setProperty("--tilt-x","0deg");m.style.setProperty("--tilt-y","0deg")});
+});
+// ---------- SCROLL ----------
+const mq=$('.marquee'),r1=$('#r1'),r2=$('#r2'),cards=[...document.querySelectorAll('.card')],stack=$('#stack');
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+function onScroll(){
+  const H=innerHeight,y=scrollY;
+  // marquee
+  const top=mq.getBoundingClientRect().top+y;
+  const off=(y-top+H)*.3;
+  r1.style.transform=`translateX(${off-200}px)`;
+  r2.style.transform=`translateX(${-(off-200)}px)`;
+  // chữ about
+  const r=an.getBoundingClientRect();
+  const p=clamp((H*.8-r.top)/(r.height+H*.6),0,1);
+  chars.forEach((c,i)=>c.classList.toggle('on',i/chars.length<p));
+  // stacking cards
+  const sr=stack.getBoundingClientRect();
+  const prog=clamp(-sr.top/Math.max(1,sr.height-H*.5)+.15,0,1);
+  cards.forEach((c,i)=>{
+    const t=1-(cards.length-1-i)*.03,start=i/cards.length;
+    const k=clamp((prog-start)/(1-start),0,1);
+    c.style.transform=`scale(${1+(t-1)*k})`;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+</script>
+</body>
+</html>
