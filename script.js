@@ -145,13 +145,25 @@ document.querySelectorAll('[data-profile]').forEach(button => button.addEventLis
 }));
 profileClose.addEventListener('click', closeProfile);
 profileBackdrop.addEventListener('click', e => { if (e.target === profileBackdrop) closeProfile() });
-addEventListener('keydown', e => { if (e.key === 'Escape' && profileBackdrop.classList.contains('open')) closeProfile() });
-// ---------- MAGNET: use tilt only, preserve click target ----------
-const mags = [...document.querySelectorAll(".magnet")];
-mags.forEach(m => {
-    m.addEventListener("pointermove", e => { const r = m.getBoundingClientRect(); const x = (e.clientX - r.left - r.width / 2) / r.width; const y = (e.clientY - r.top - r.height / 2) / r.height; m.style.setProperty("--tilt-x", `${-y * 4}deg`); m.style.setProperty("--tilt-y", `${x * 4}deg`) });
-    m.addEventListener("pointerleave", () => { m.style.setProperty("--tilt-x", "0deg"); m.style.setProperty("--tilt-y", "0deg") });
-});
+document.querySelectorAll('[data-profile]').forEach(button => button.addEventListener('click', e => {
+    profileOpener = button; 
+    const p = profiles[button.dataset.profile];
+    
+    // Cập nhật thông tin text
+    $('#profileName').textContent = p.name; 
+    $('#profileStudent').textContent = p.student; 
+    $('#profileDescription').textContent = p.description;
+    
+    // THÊM DÒNG NÀY: Lấy chữ cái đầu tiên của từ cuối cùng trong tên (Ví dụ "Nguyễn Thị Ngọc Trâm" -> "T")
+    const initial = p.name.split(' ').pop().charAt(0);
+    document.querySelector('.profile-avatar').textContent = initial;
+
+    // Hiển thị popup
+    profileBackdrop.classList.add('open'); 
+    profileBackdrop.setAttribute('aria-hidden', 'false'); 
+    document.body.style.overflow = 'hidden'; 
+    profileClose.focus();
+}));
 // ---------- SCROLL ----------
 const mq = $('.marquee'), r1 = $('#r1'), r2 = $('#r2'), cards = [...document.querySelectorAll('.card')], stack = $('#stack');
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
